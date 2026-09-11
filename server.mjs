@@ -1,0 +1,5 @@
+import express from 'express';import OpenAI from 'openai';import path from 'node:path';import {fileURLToPath} from 'node:url';
+const app=express(),dir=path.dirname(fileURLToPath(import.meta.url));app.use(express.json({limit:'1mb'}));app.use(express.static(path.join(dir,'../public')));
+const key=process.env.OPENAI_API_KEY,model=process.env.OPENAI_MODEL||'gpt-5.6-luna',client=key?new OpenAI({apiKey:key}):null;
+app.post('/api/chat',async(req,res)=>{const {question='',level='گشتی',subject='گشتی',mode='کورت و پوخت'}=req.body||{};if(!client)return res.status(503).json({error:'AI not configured'});try{const x=await client.responses.create({model,store:false,instructions:`تۆ AI Teacher ـی pole12krd ـیت. بە کوردیی سۆرانیی ڕوون و سروشتی وەڵام بدە. ئاست: ${level}. بابەت: ${subject}. شێواز: ${mode}. وەڵام کورت و پوخت و فێرکاری بێت؛ بۆ پرسیاری ئاڵۆز هەنگاو بە هەنگاو ڕوونی بکەوە. شتی خەیاڵی مەکە.`,input:question});res.json({answer:x.output_text})}catch(e){res.status(500).json({error:'AI request failed'})}});
+app.listen(process.env.PORT||10000);
