@@ -1,152 +1,567 @@
 <!DOCTYPE html>
 <html lang="ku" dir="rtl">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pole12Krd - پۆلی ١٢ و زانکۆ</title>
-    <style>
-        body { font-family: Tahoma, sans-serif; background: #0f172a; color: #fff; margin: 0; padding: 15px; text-align: center; }
-        .container { max-width: 900px; margin: auto; background: #1e293b; padding: 25px; border-radius: 15px; box-shadow: 0 4px 15px rgba(0,0,0,0.4); }
-        h1 { color: #38bdf8; font-size: 24px; }
-        p { color: #94a3b8; font-size: 14px; }
-        .lang-select { margin: 15px 0; }
-        select { padding: 8px 15px; border-radius: 8px; background: #334155; color: #fff; border: none; font-size: 14px; }
-        .section { background: #0f172a; margin-top: 20px; padding: 20px; border-radius: 10px; text-align: right; }
-        .section h2 { color: #38bdf8; font-size: 18px; margin-top: 0; }
-        input, textarea { width: 100%; padding: 10px; margin-top: 10px; border-radius: 6px; background: #1e293b; border: 1px solid #475569; color: #fff; box-sizing: border-box; }
-        .btn { display: inline-block; background: #2563eb; color: #fff; padding: 10px 20px; border-radius: 8px; text-decoration: none; margin-top: 10px; font-weight: bold; border: none; cursor: pointer; width: 100%; text-align: center; }
-        .btn:hover { background: #1d4ed8; }
-        .ai-response { background: #334155; padding: 15px; border-radius: 6px; margin-top: 10px; min-height: 40px; text-align: right; color: #e2e8f0; }
-        .quiz-opt { background: #334155; padding: 10px; margin: 8px 0; border-radius: 6px; cursor: pointer; border: 1px solid #475569; text-align: right; }
-        .quiz-opt:hover { background: #475569; }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>pole12krd | پۆلی 12</title>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: Arial, sans-serif;
+    }
+
+    body {
+      background: #f5f7fb;
+      color: #172033;
+    }
+
+    header {
+      background: #101828;
+      color: white;
+      padding: 18px 7%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .logo {
+      font-size: 25px;
+      font-weight: 800;
+      color: #63e6be;
+    }
+
+    nav {
+      display: flex;
+      gap: 25px;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      font-size: 15px;
+    }
+
+    .language {
+      background: #1d2939;
+      color: white;
+      border: 1px solid #344054;
+      padding: 8px 12px;
+      border-radius: 10px;
+    }
+
+    .hero {
+      min-height: 80vh;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 70px 7%;
+      background:
+        radial-gradient(circle at 20% 20%, #d9fff2, transparent 30%),
+        linear-gradient(135deg, #f7fffc, #eef2ff);
+    }
+
+    .hero-text {
+      max-width: 650px;
+    }
+
+    .hero h1 {
+      font-size: clamp(40px, 6vw, 75px);
+      line-height: 1.1;
+      margin-bottom: 25px;
+    }
+
+    .hero h1 span {
+      color: #00a878;
+    }
+
+    .hero p {
+      font-size: 20px;
+      line-height: 2;
+      color: #475467;
+      margin-bottom: 30px;
+    }
+
+    .buttons {
+      display: flex;
+      gap: 15px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      border: none;
+      padding: 15px 25px;
+      border-radius: 14px;
+      cursor: pointer;
+      font-size: 16px;
+      font-weight: bold;
+    }
+
+    .primary {
+      background: #00a878;
+      color: white;
+    }
+
+    .secondary {
+      background: white;
+      color: #101828;
+      border: 1px solid #d0d5dd;
+    }
+
+    .ai-card {
+      width: 330px;
+      min-height: 390px;
+      background: rgba(255,255,255,.75);
+      backdrop-filter: blur(20px);
+      border: 1px solid rgba(255,255,255,.8);
+      border-radius: 30px;
+      padding: 25px;
+      box-shadow: 0 25px 70px rgba(16,24,40,.12);
+      transform: rotate(2deg);
+    }
+
+    .ai-icon {
+      width: 65px;
+      height: 65px;
+      background: #101828;
+      color: #63e6be;
+      border-radius: 20px;
+      display: grid;
+      place-items: center;
+      font-size: 30px;
+      margin-bottom: 20px;
+    }
+
+    .ai-card h2 {
+      margin-bottom: 12px;
+    }
+
+    .ai-message {
+      background: #f2f4f7;
+      padding: 15px;
+      border-radius: 15px;
+      margin-top: 20px;
+      line-height: 1.8;
+    }
+
+    section {
+      padding: 80px 7%;
+    }
+
+    .section-title {
+      text-align: center;
+      margin-bottom: 45px;
+    }
+
+    .section-title h2 {
+      font-size: 38px;
+      margin-bottom: 12px;
+    }
+
+    .section-title p {
+      color: #667085;
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 20px;
+    }
+
+    .card {
+      background: white;
+      padding: 28px;
+      border-radius: 22px;
+      border: 1px solid #eaecf0;
+      transition: .3s;
+    }
+
+    .card:hover {
+      transform: translateY(-7px);
+      box-shadow: 0 20px 50px rgba(16,24,40,.1);
+    }
+
+    .card .icon {
+      font-size: 35px;
+      margin-bottom: 18px;
+    }
+
+    .card h3 {
+      margin-bottom: 12px;
+    }
+
+    .card p {
+      color: #667085;
+      line-height: 1.8;
+    }
+
+    .ai-section {
+      background: #101828;
+      color: white;
+    }
+
+    .ai-section .section-title p {
+      color: #98a2b3;
+    }
+
+    .ai-box {
+      max-width: 850px;
+      margin: auto;
+      background: #182230;
+      border: 1px solid #344054;
+      border-radius: 25px;
+      padding: 25px;
+    }
+
+    .chat {
+      height: 300px;
+      overflow-y: auto;
+      padding: 10px;
+    }
+
+    .message {
+      padding: 14px 18px;
+      margin: 12px 0;
+      border-radius: 15px;
+      max-width: 75%;
+      line-height: 1.8;
+    }
+
+    .bot {
+      background: #263241;
+    }
+
+    .user {
+      background: #00a878;
+      margin-right: auto;
+    }
+
+    .chat-input {
+      display: flex;
+      gap: 10px;
+      margin-top: 15px;
+    }
+
+    .chat-input input {
+      flex: 1;
+      padding: 15px;
+      border-radius: 12px;
+      border: none;
+      outline: none;
+    }
+
+    footer {
+      background: #080d16;
+      color: #98a2b3;
+      padding: 35px 7%;
+      text-align: center;
+    }
+
+    @media(max-width: 800px) {
+      nav {
+        display: none;
+      }
+
+      .hero {
+        flex-direction: column;
+        gap: 50px;
+        text-align: center;
+      }
+
+      .buttons {
+        justify-content: center;
+      }
+
+      .ai-card {
+        width: 100%;
+        max-width: 350px;
+      }
+    }
+  </style>
 </head>
+
 <body>
-    <div class="container">
-        <div class="lang-select">
-            <select id="languageSelect" onchange="changeLanguage()">
-                <option value="ku">کوردی (سۆرانی)</option>
-                <option value="kmr">کوردی (بادینی)</option>
-                <option value="ar">العربية</option>
-                <option value="en">English</option>
-            </select>
-        </div>
-        
-        <h1 id="title">پۆلی ١٢ و زانکۆ - Pole12Krd</h1>
-        <p id="desc">ناوەندی پێشکەوتووی قوتابیان لە کوردستان بە پشتگیری ژیری دەستکرد (2027)</p>
 
-        <!-- AI Tutor Section -->
-        <div class="section">
-            <h2 id="aiTitle">🤖 مامۆستای زیرەک (AI Tutor)</h2>
-            <p id="aiDesc">هەر پرسیارێکت هەبێت بە هەر زمانێک (کوردی، عەرەبی، ئینگلیزی) لێرە بکە:</p>
-            <textarea id="aiInput" rows="3" placeholder="پرسیارەکەت لێرە بنووسە..."></textarea>
-            <button class="btn" id="aiBtn" onclick="askAI()">پرسیارکردن لە مامۆستا</button>
-            <div class="ai-response" id="aiOutput">وەڵامی ژیری دەستکرد لێرە دەردەکەوێت...</div>
-        </div>
+<header>
+  <div class="logo">pole12krd</div>
 
-        <!-- Quiz Section -->
-        <div class="section">
-            <h2 id="quizTitle">📝 تاقیکردنەوەی خێرا (Quiz)</h2>
-            <p id="quizQuestion">کام خەسڵەتە تایبەتە بە وزەی کینەتیکی (KE)؟</p>
-            <div class="quiz-opt" onclick="checkAnswer(1)" id="opt1">أ) پەیوەندبەستووە بە خێرایی و پاتری</div>
-            <div class="quiz-opt" onclick="checkAnswer(2)" id="opt2">ب) پشت بە بارستایی و خێرایی دەبەستێت (1/2 mv²)</div>
-            <div class="quiz-opt" onclick="checkAnswer(3)" id="opt3">ج) تەنها لە شوێنی بەرزدا بوونی هەیە</div>
-            <div class="ai-response" id="quizResult" style="margin-top:10px;">ئەنجامی وەڵامدانەوەت لێرە دەردەکەوێت...</div>
-        </div>
+  <nav>
+    <a href="#home">سەرەتا</a>
+    <a href="#courses">وانەکان</a>
+    <a href="#ai">AI مامۆستا</a>
+    <a href="#tools">ئامرازەکان</a>
+  </nav>
 
-        <!-- Files Section -->
-        <div class="section">
-            <h2 id="fileTitle">📚 مەنهەج، پرسیار و فایلەکان</h2>
-            <p id="fileDesc">دابەزاندنی پەڕتووک و فایلی فێرکاری بۆ پۆلی 12 و زانکۆ</p>
-            <a href="https://drive.google.com" target="_blank" class="btn" id="fileBtn">کردنەوەی فایلسەنتەری گۆگڵ دڕایڤ</a>
-        </div>
+  <select class="language" onchange="changeLanguage(this.value)">
+    <option value="ku">کوردی</option>
+    <option value="ar">العربية</option>
+    <option value="en">English</option>
+  </select>
+</header>
+
+<main>
+
+<section class="hero" id="home">
+
+  <div class="hero-text">
+
+    <h1>
+      داهاتووی خوێندن
+      <span>لە pole12krd</span>
+    </h1>
+
+    <p>
+      پلاتفۆرمێکی نوێ بۆ قوتابیانی پۆلی 12،
+      زانکۆ و پەیمانگەکان؛ بە یارمەتی ژیری دەستکرد
+      و ئامرازە زیرەکەکانی خوێندن.
+    </p>
+
+    <div class="buttons">
+      <button class="btn primary" onclick="startLearning()">
+        دەستپێکردنی خوێندن 🚀
+      </button>
+
+      <button class="btn secondary" onclick="openAI()">
+        قسەکردن لەگەڵ AI 🤖
+      </button>
     </div>
 
-    <script>
-        function changeLanguage() {
-            const lang = document.getElementById('languageSelect').value;
-            if(lang === 'en') {
-                document.getElementById('title').innerText = "Grade 12 & University - Pole12Krd";
-                document.getElementById('desc').innerText = "Advanced student platform in Kurdistan powered by AI (2027)";
-                document.getElementById('aiTitle').innerText = "🤖 AI Smart Tutor";
-                document.getElementById('aiDesc').innerText = "Ask any question in any language here:";
-                document.getElementById('aiInput').placeholder = "Type your question here...";
-                document.getElementById('aiBtn').innerText = "Ask Tutor";
-                document.getElementById('aiOutput').innerText = "AI response will appear here...";
-                document.getElementById('quizTitle').innerText = "📝 Interactive Quick Quiz";
-                document.getElementById('quizQuestion').innerText = "Which characteristic applies to Kinetic Energy (KE)?";
-                document.getElementById('opt1').innerText = "A) Connected to speed and battery";
-                document.getElementById('opt2').innerText = "B) Depends on mass and velocity (1/2 mv²)";
-                document.getElementById('opt3').innerText = "C) Exists only at high altitude";
-                document.getElementById('quizResult').innerText = "Your quiz result will appear here...";
-                document.getElementById('fileTitle').innerText = "📚 Curriculums & Files";
-                document.getElementById('fileDesc').innerText = "Download textbooks and educational files for Grade 12 and university";
-                document.getElementById('fileBtn').innerText = "Open Google Drive File Center";
-            } else if(lang === 'ar') {
-                document.getElementById('title').innerText = "الصف الثاني عشر والجامعة - Pole12Krd";
-                document.getElementById('desc').innerText = "منصة طلابية متقدمة في كردستان مدعومة بالذكاء الاصطناعي (2027)";
-                document.getElementById('aiTitle').innerText = "🤖 المدرس الذكي (AI Tutor)";
-                document.getElementById('aiDesc').innerText = "اطرح أي سؤال بأي لغة هنا:";
-                document.getElementById('aiInput').placeholder = "اكتب سؤالك هنا...";
-                document.getElementById('aiBtn').innerText = "اسأل المدرس";
-                document.getElementById('aiOutput').innerText = "سيظهر رد الذكاء الاصطناعي هنا...";
-                document.getElementById('quizTitle').innerText = "📝 اختبار سريع تفاعلي";
-                document.getElementById('quizQuestion').innerText = "ما هي الخصوصية المتعلقة بطاقة الحركة (KE)؟";
-                document.getElementById('opt1').innerText = "أ) مرتبطة بالسرعة والبطارية";
-                document.getElementById('opt2').innerText = "ب) تعتمد على الكتلة والسرعة (1/2 mv²)";
-                document.getElementById('opt3').innerText = "ج) توجد فقط في الأماكن المرتفعة";
-                document.getElementById('quizResult').innerText = "سيظهر نتيجة الاختبار هنا...";
-                document.getElementById('fileTitle').innerText = "📚 المناهج والملفات";
-                document.getElementById('fileDesc').innerText = "تحميل الكتب والملفات التعليمية للصف الثاني عشر والجامعة";
-                document.getElementById('fileBtn').innerText = "فتح مركز ملفات جوجل درايف";
-            } else {
-                document.getElementById('title').innerText = "پۆلی ١٢ و زانکۆ - Pole12Krd";
-                document.getElementById('desc').innerText = "ناوەندی پێشکەوتووی قوتابیان لە کوردستان بە پشتگیری ژیری دەستکرد (2027)";
-                document.getElementById('aiTitle').innerText = "🤖 مامۆستای زیرەک (AI Tutor)";
-                document.getElementById('aiDesc').innerText = "هەر پرسیارێکت هەبێت بە هەر زمانێک (کوردی، عەرەبی، ئینگلیزی) لێرە بکە:";
-                document.getElementById('aiInput').placeholder = "پرسیارەکەت لێرە بنووسە...";
-                document.getElementById('aiBtn').innerText = "پرسیارکردن لە مامۆستا";
-                document.getElementById('aiOutput').innerText = "وەڵامی ژیری دەستکرد لێرە دەردەکەوێت...";
-                document.getElementById('quizTitle').innerText = "📝 تاقیکردنەوەی خێرا (Quiz)";
-                document.getElementById('quizQuestion').innerText = "کام خەسڵەتە تایبەتە بە وزەی کینەتیکی (KE)؟";
-                document.getElementById('opt1').innerText = "أ) پەیوەندبەستووە بە خێرایی و پاتری";
-                document.getElementById('opt2').innerText = "ب) پشت بە بارستایی و خێرایی دەبەستێت (1/2 mv²)";
-                document.getElementById('opt3').innerText = "ج) تەنها لە شوێنی بەرزدا بوونی هەیە";
-                document.getElementById('quizResult').innerText = "ئەنجامی وەڵامدانەوەت لێرە دەردەکەوێت...";
-                document.getElementById('fileTitle').innerText = "📚 مەنهەج، پرسیار و فایلەکان";
-                document.getElementById('fileDesc').innerText = "دابەزاندنی پەڕتووک و فایلی فێرکاری بۆ پۆلی 12 و زانکۆ";
-                document.getElementById('fileBtn').innerText = "کردنەوەی فایلسەنتەری گۆگڵ دڕایڤ";
-            }
-        }
+  </div>
 
-        function askAI() {
-            const val = document.getElementById('aiInput').value;
-            const lang = document.getElementById('languageSelect').value;
-            if(!val.trim()) {
-                alert("تکایە سەرەتا پرسیارێک بنووسە!");
-                return;
-            }
-            if(lang === 'en') {
-                document.getElementById('aiOutput').innerText = "AI Tutor: I analyzed your question ('" + val + "'). Based on curriculum standards, here is the detailed explanation for you...";
-            } else if(lang === 'ar') {
-                document.getElementById('aiOutput').innerText = "المدرس الذكي: لقد حللت سؤالك ('" + val + "'). بناءً على المعايير الدراسية، إليك الشرح المفصل...";
-            } else {
-                document.getElementById('aiOutput').innerText = "مامۆستای زیرەک: پرسیارەکەم خوێندەوە ('" + val + "'). وەک مامۆستایەک بە شێوەیەکی زانستی و پوخت بۆت شی دەکەمەوە کە...";
-            }
-        }
+  <div class="ai-card">
 
-        function checkAnswer(opt) {
-            const lang = document.getElementById('languageSelect').value;
-            if(opt === 2) {
-                if(lang === 'en') document.getElementById('quizResult').innerText = "✅ Correct! Great job, option B is accurate.";
-                else if(lang === 'ar') document.getElementById('quizResult').innerText = "✅ صحيح! أحسنت، الخيار (ب) هو الدقيق.";
-                else document.getElementById('quizResult').innerText = "✅ پیرۆزە! وەڵامەکەت ڕاستە، بژاردەی (ب) دروستە.";
-            } else {
-                if(lang === 'en') document.getElementById('quizResult').innerText = "❌ Incorrect. Try again!";
-                else if(lang === 'ar') document.getElementById('quizResult').innerText = "❌ خطأ. حاول مرة أخرى!";
-                else document.getElementById('quizResult').innerText = "❌ هەڵەیە. دووبارە هەوڵ بدەرەوە!";
-            }
-        }
-    </script>
+    <div class="ai-icon">✦</div>
+
+    <h2>AI مامۆستا</h2>
+
+    <p>
+      هەر پرسیارێکت هەیە، بە زمانی خۆت بیپرسە.
+    </p>
+
+    <div class="ai-message">
+      🤖 سڵاو! من AI مامۆستای pole12krd ـم.
+      چ بابەتێکت هەیە کە دەتەوێت بۆت ڕوون بکەمەوە؟
+    </div>
+
+  </div>
+
+</section>
+
+
+<section id="courses">
+
+  <div class="section-title">
+    <h2>هەموو شتێک بۆ خوێندنت</h2>
+    <p>یەک پلاتفۆرم بۆ خوێندن، تاقیکردنەوە و فێربوون.</p>
+  </div>
+
+  <div class="cards">
+
+    <div class="card">
+      <div class="icon">📚</div>
+      <h3>پۆلی 12</h3>
+      <p>
+        بابەت و وانەکانی پۆلی 12 بە شێوەی ڕێکخراو و ئاسان.
+      </p>
+    </div>
+
+    <div class="card">
+      <div class="icon">🎓</div>
+      <h3>زانکۆ</h3>
+      <p>
+        ڕێنمایی و سەرچاوە بۆ خوێندنی زانکۆ و هەڵبژاردنی بەش.
+      </p>
+    </div>
+
+    <div class="card">
+      <div class="icon">🏫</div>
+      <h3>پەیمانگە</h3>
+      <p>
+        زانیاری و ناوەڕۆکی پەیمانگەکان بۆ قوتابیان.
+      </p>
+    </div>
+
+    <div class="card">
+      <div class="icon">🤖</div>
+      <h3>AI مامۆستا</h3>
+      <p>
+        پرسیار بکە، ڕوونکردنەوە و کورتکراوە و تاقیکردنەوە وەربگرە.
+      </p>
+    </div>
+
+  </div>
+
+</section>
+
+
+<section id="tools">
+
+  <div class="section-title">
+    <h2>ئامرازە زیرەکەکان</h2>
+    <p>خوێندن بە شێوازێکی نوێ.</p>
+  </div>
+
+  <div class="cards">
+
+    <div class="card">
+      <div class="icon">📄</div>
+      <h3>PDF → Flashcards</h3>
+      <p>
+        فایلەکەت دابنێ و سیستەمەکە خاڵە گرنگەکان
+        بۆ Flashcard ئامادە دەکات.
+      </p>
+    </div>
+
+    <div class="card">
+      <div class="icon">📝</div>
+      <h3>Quiz ساز</h3>
+      <p>
+        لەسەر بابەتەکەت Quiz ـی زیرەک دروست بکە.
+      </p>
+    </div>
+
+    <div class="card">
+      <div class="icon">🧠</div>
+      <h3>کورتکردنەوە</h3>
+      <p>
+        بابەتە درێژەکان بکە بە خاڵە سەرەکییەکان.
+      </p>
+    </div>
+
+    <div class="card">
+      <div class="icon">🫀</div>
+      <h3>3D Learning</h3>
+      <p>
+        شتە زانستییەکان بە شێوەی Interactive و 3D ببینە.
+      </p>
+    </div>
+
+  </div>
+
+</section>
+
+
+<section class="ai-section" id="ai">
+
+  <div class="section-title">
+    <h2>🤖 AI مامۆستای pole12krd</h2>
+
+    <p>
+      بە هەر زمانێک پرسیار بکە و وەڵام بە هەمان زمان وەربگرە.
+    </p>
+  </div>
+
+  <div class="ai-box">
+
+    <div class="chat" id="chat">
+
+      <div class="message bot">
+        سڵاو 👋<br>
+        من AI مامۆستام. پرسیارێک بنووسە بۆ دەستپێکردن.
+      </div>
+
+    </div>
+
+    <div class="chat-input">
+
+      <input
+        id="question"
+        type="text"
+        placeholder="پرسیارەکەت لێرە بنووسە..."
+        onkeydown="if(event.key==='Enter') askAI()"
+      >
+
+      <button class="btn primary" onclick="askAI()">
+        ناردن
+      </button>
+
+    </div>
+
+  </div>
+
+</section>
+
+</main>
+
+
+<footer>
+  <p>© 2027 pole12krd — داهاتووی خوێندن بە کوردی</p>
+</footer>
+
+
+<script>
+
+function askAI() {
+
+  const input = document.getElementById("question");
+  const chat = document.getElementById("chat");
+
+  const question = input.value.trim();
+
+  if (!question) return;
+
+  chat.innerHTML += `
+    <div class="message user">
+      ${question}
+    </div>
+  `;
+
+  input.value = "";
+
+  setTimeout(() => {
+
+    chat.innerHTML += `
+      <div class="message bot">
+        🤖 پرسیارەکەت وەرگیرا.
+        لە وەشانی تەواوی pole12krd،
+        AI بە سەرچاوە و زانیارییە پەسەندکراوەکان
+        وەڵامی ورد و ڕوون دەداتەوە.
+      </div>
+    `;
+
+    chat.scrollTop = chat.scrollHeight;
+
+  }, 600);
+}
+
+
+function startLearning() {
+  document.getElementById("courses").scrollIntoView({
+    behavior: "smooth"
+  });
+}
+
+
+function openAI() {
+  document.getElementById("ai").scrollIntoView({
+    behavior: "smooth"
+  });
+}
+
+
+function changeLanguage(lang) {
+
+  if (lang === "en") {
+    alert("English version — coming soon");
+  }
+
+  if (lang === "ar") {
+    alert("النسخة العربية — قريباً");
+  }
+
+  if (lang === "ku") {
+    alert("بەخێربێیت بۆ pole12krd");
+  }
+
+}
+
+</script>
+
 </body>
 </html>
