@@ -1,42 +1,33 @@
-const chat = document.getElementById("chat");
-const input = document.getElementById("question");
-const send = document.getElementById("send");
+const $=s=>document.querySelector(s);
+function toast(t){const x=$("#toast");x.textContent=t;x.classList.add("show");setTimeout(()=>x.classList.remove("show"),2600)}
+$("#openAi").onclick=()=>document.querySelector("#study").scrollIntoView({behavior:"smooth"});
+$("#menuBtn").onclick=()=>toast("مێنیووی سایت لە وەشانی دواتر بە تەواوی زیاد دەکرێت.");
 
-function addMessage(text, type){
-  const el=document.createElement("div");
-  el.className="bubble "+type;
-  el.innerHTML=text.replace(/\n/g,"<br>");
-  chat.appendChild(el);
-  chat.scrollTop=chat.scrollHeight;
-}
-function ask(){
-  const q=input.value.trim();
-  if(!q)return;
-  addMessage(q,"user");
-  input.value="";
-  setTimeout(()=>{
-    addMessage("پرسیارەکەت وەرگیرا. لە وەشانی تەواوی pole12krd، ئەم بەشە بە AI ـی پشتبەستوو بە سەرچاوە پەسەندکراوەکان وەڵام دەدرێتەوە. بۆ نموونە دەتوانیت پرسیار لە بیرکاری، فیزیا، کیمیا، زیندەزانی یان بابەتەکانی پۆلی 12 بکەیت. 🤖","bot");
-  },500);
-}
-send.addEventListener("click",ask);
-input.addEventListener("keydown",e=>{if(e.key==="Enter")ask()});
+$("#chatForm").addEventListener("submit",e=>{
+ e.preventDefault(); const input=$("#question"), q=input.value.trim(); if(!q)return;
+ const chat=$("#chat"); chat.innerHTML+=`<div class="bubble user">${escapeHtml(q)}</div>`;
+ input.value="";
+ setTimeout(()=>{
+   chat.innerHTML+=`<div class="bubble bot"><b>AI مامۆستا:</b><br>ئەمە وەڵامی Demo ـە. لە وەشانی AI ـی ڕاستەقینەدا پرسیارەکەت بە زمانی خۆت وەردەگیرێت، دواتر بە هەمان زمان وەڵام، هۆکار و نموونە بۆت دەدرێت.</div>`;
+   chat.scrollTop=chat.scrollHeight;
+ },450);
+});
+function escapeHtml(s){return s.replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"}[m]))}
 
-document.querySelectorAll(".tool").forEach(btn=>{
-  btn.addEventListener("click",()=>{
-    alert("ئەم ئامرازە لە قۆناغی دووەمی پڕۆژەدا بە سیستەمی ڕاستەقینەی PDF/AI زیاد دەکرێت.");
-  });
+$("#pdf").addEventListener("change",e=>{
+ const f=e.target.files[0]; if(!f)return;
+ $("#fileInfo").textContent=`📄 ${f.name} — ${Math.round(f.size/1024)} KB`;
+ toast("PDF وەرگیرا؛ لە قۆناغی دواتر AI ناوەڕۆکەکە دەخوێنێتەوە.");
 });
 
-document.getElementById("langBtn").addEventListener("click",()=>{
-  alert("لە وەشانی داهاتوودا: کوردی سۆرانی، کوردی بادینی، العربية و English.");
-});
-
-document.getElementById("menuBtn").addEventListener("click",()=>{
-  const nav=document.querySelector(".topbar nav");
-  const open=nav.style.display==="flex";
-  nav.style.display=open?"none":"flex";
-  if(!open){
-    nav.style.position="absolute";nav.style.top="70px";nav.style.right="0";nav.style.left="0";
-    nav.style.padding="20px 5%";nav.style.background="#0b1220";nav.style.flexDirection="column";
-  }
+const texts={
+ ku:{hero:"یاریدەدەری خوێندن بۆ پۆلی 12، زانکۆ و پەیمانگە؛ بە AI ـی مامۆستا."},
+ ar:{hero:"منصة تعليمية للصف 12 والجامعة والمعاهد، مع مساعد ذكاء اصطناعي كالمعلّم."},
+ en:{hero:"A smart learning platform for Grade 12, university and institute students, with an AI teacher."}
+};
+$("#language").addEventListener("change",e=>{
+ const l=e.target.value; document.documentElement.lang=l;
+ document.documentElement.dir=l==="en"?"ltr":"rtl";
+ $("#heroText").textContent=texts[l].hero;
+ toast(l==="ku"?"زمان: کوردی":l==="ar"?"اللغة: العربية":"Language: English");
 });

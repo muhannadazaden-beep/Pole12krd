@@ -1,98 +1,85 @@
 <!doctype html>
 <html lang="ku" dir="rtl">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-  <meta name="theme-color" content="#0b1220">
-  <title>pole12krd — داهاتووی خوێندن</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>pole12krd — خوێندنەوە، تێگەیشتن، سەرکەوتن</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <div class="bg-orb orb-a"></div>
-  <div class="bg-orb orb-b"></div>
+<header class="topbar">
+  <button class="icon-btn" id="menuBtn">☰</button>
+  <div class="brand">pole<span>12</span>krd</div>
+  <select id="language" aria-label="Language">
+    <option value="ku">کوردی</option><option value="ar">العربية</option><option value="en">English</option>
+  </select>
+</header>
 
-  <header class="topbar">
-    <a class="brand" href="#home"><span>pole</span>12krd</a>
-    <nav>
-      <a href="#home">سەرەتا</a>
-      <a href="#learning">خوێندن</a>
-      <a href="#ai">AI مامۆستا</a>
-      <a href="#tools">ئامرازەکان</a>
-    </nav>
+<main>
+  <section class="hero">
+    <div class="badge">● پلاتفۆرمی خوێندنی نوێ بۆ 2027</div>
+    <h1>خوێندنەوە، <em>تێگەیشتن،</em><br>سەرکەوتن.</h1>
+    <p id="heroText">یاریدەدەری خوێندن بۆ پۆلی 12، زانکۆ و پەیمانگە؛ بە AI ـی مامۆستا.</p>
     <div class="actions">
-      <button class="lang" id="langBtn">کوردی ▾</button>
-      <button class="menu" id="menuBtn">☰</button>
+      <a class="primary" href="#tools">🚀 دەستپێکردنی خوێندن</a>
+      <button class="secondary" id="openAi">🤖 قسەکردن لەگەڵ AI</button>
     </div>
-  </header>
+  </section>
 
-  <main>
-    <section class="hero" id="home">
-      <div class="hero-copy">
-        <div class="eyebrow"><span class="pulse"></span> پلاتفۆرمی خوێندنی نوێ بۆ 2027</div>
-        <h1>خوێندنەوە، <em>تێگەیشتن</em>، سەرکەوتن.</h1>
-        <p>pole12krd یارمەتیدەری قوتابییە بۆ پۆلی 12، زانکۆ و پەیمانگە؛ لەگەڵ AI مامۆستا و ئامرازە زیرەکەکانی خوێندن.</p>
-        <div class="hero-buttons">
-          <a class="btn primary" href="#learning">🚀 دەستپێکردنی خوێندن</a>
-          <a class="btn ghost" href="#ai">🤖 تاقیکردنەوەی AI</a>
-        </div>
-        <div class="trust">
-          <span>✓ کوردی سەرەکی</span><span>✓ سۆرانی + بادینی</span><span>✓ العربية + English</span>
-        </div>
-      </div>
+  <section id="tools" class="section">
+    <div class="section-title">
+      <span>خوێندن بە شێوەی زیرەک</span>
+      <p>ئامرازەکانت لە یەک شوێن</p>
+    </div>
+    <div class="cards">
+      <article class="card dark">
+        <div class="emoji">📚</div><h2>پۆلی 12</h2>
+        <p>وانە و بابەتەکان بە شێوەی ڕێکخراو و ئاسان.</p>
+        <button onclick="toast('بەشی پۆلی 12 بە زودی پڕ دەکرێتەوە')">بینینی بابەتەکان ←</button>
+      </article>
+      <article class="card">
+        <div class="emoji">🎓</div><h2>زانکۆ و پەیمانگە</h2>
+        <p>زانیاری و ڕێنمایی بۆ هەڵبژاردنی خوێندن.</p>
+        <button onclick="toast('بەشی زانکۆ و پەیمانگە بە زودی زیاد دەکرێت')">بینینی زانیاری ←</button>
+      </article>
+      <article class="card">
+        <div class="emoji">🧠</div><h2>فێربوونی زیرەک</h2>
+        <p>کورتکراوە، Flashcards و Quiz لەسەر بابەتەکان.</p>
+        <button onclick="document.getElementById('study').scrollIntoView({behavior:'smooth'})">تاقیکردنەوە ←</button>
+      </article>
+    </div>
+  </section>
 
-      <div class="hero-panel">
-        <div class="panel-glow"></div>
-        <div class="ai-head"><div class="ai-avatar">✦</div><div><b>AI مامۆستا</b><small>ئامادەیە بۆ یارمەتیدانت</small></div><span class="online"></span></div>
-        <div class="chat-demo">
-          <div class="bubble bot">سڵاو 👋<br>من مامۆستای AI ـی pole12krd ـم. بابەتێک بنووسە تا بە شێوەیەکی سادە بۆت ڕوون بکەمەوە.</div>
-          <div class="bubble user">فۆتۆسینتێز بە کورتی چییە؟</div>
-          <div class="bubble bot">فۆتۆسینتێز پرۆسەیەکە کە ڕووەکەکان بە یارمەتی ڕووناکی، ئاوی و CO₂ خواردن بۆ خۆیان دروست دەکەن. 🌱</div>
-        </div>
-        <div class="fake-input">پرسیارەکەت بنووسە... <span>➤</span></div>
-      </div>
-    </section>
+  <section id="study" class="workspace">
+    <div class="workspace-head">
+      <div><span class="mini">AI مامۆستا</span><h2>یاریدەدەری خوێندنت</h2><p>پرسیارەکەت بنووسە؛ وەڵامێکی ڕوون و پۆلێنکراو وەربگرە.</p></div>
+      <div class="ai-dot">✦</div>
+    </div>
+    <div id="chat" class="chat">
+      <div class="bubble bot">سڵاو 👋 من AI مامۆستای <b>pole12krd</b> ـم. بابەتێک بنووسە تا بە شێوەی مامۆستا بۆت ڕوون بکەمەوە.</div>
+    </div>
+    <form id="chatForm" class="chat-form">
+      <input id="question" placeholder="پرسیارەکەت بنووسە..." autocomplete="off">
+      <button>➤</button>
+    </form>
+    <p class="notice">ئەم وەشانە Demo ـی Frontend ـە؛ بۆ AI ـی ڕاستەقینە دەبێت Backend/API زیاد بکرێت.</p>
+  </section>
 
-    <section class="section" id="learning">
-      <div class="section-heading">
-        <span>POLE 12</span><h2>هەموو شتێک بۆ خوێندنت</h2>
-        <p>لە یەک شوێنەوە بابەتەکانت بخوێنە، تاقیبکەرەوە و پێشکەوتنت ببینە.</p>
-      </div>
-      <div class="feature-grid">
-        <article class="feature featured"><div class="icon">📚</div><h3>پۆلی 12</h3><p>وانە و بابەتەکان بە شێوەی ڕێکخراو، خاڵبەندی و ئاسان بۆ تێگەیشتن.</p><a href="#tools">بینینی ئامرازەکان ←</a></article>
-        <article class="feature"><div class="icon">🎓</div><h3>زانکۆ</h3><p>ڕێنمایی بۆ هەڵبژاردنی بەش و زانیارییە پەیوەندیدارەکانی خوێندن.</p></article>
-        <article class="feature"><div class="icon">🏫</div><h3>پەیمانگە</h3><p>ناوەڕۆک و ڕێنمایی بۆ هەنگاوی داهاتووی خوێندکار.</p></article>
-        <article class="feature"><div class="icon">🧠</div><h3>فێربوونی زیرەک</h3><p>کورتکراوە، Flashcards و Quiz بۆ بیرخستنەوەی باشتر.</p></article>
-      </div>
-    </section>
+  <section class="upload">
+    <div>
+      <span class="mini">PDF → AI</span>
+      <h2>فایلی وانەکەت بخەرە ناوەوە</h2>
+      <p>لە قۆناغی دواتر PDF دەخوێنینەوە و کورتکراوە، Flashcards و Quiz دروست دەکەین.</p>
+    </div>
+    <label class="upload-btn">📄 هەڵبژاردنی PDF
+      <input id="pdf" type="file" accept=".pdf,application/pdf" hidden>
+    </label>
+    <div id="fileInfo"></div>
+  </section>
+</main>
 
-    <section class="ai-section" id="ai">
-      <div class="section-heading light"><span>AI TUTOR</span><h2>مامۆستایەک کە بە زمانی تۆ قسە دەکات.</h2><p>پرسیارەکەت بنووسە؛ لە وەشانی تەواوی سیستەمەکەدا AI بە سەرچاوە پەسەندکراوەکان وەڵامی دەداتەوە.</p></div>
-      <div class="ai-app">
-        <div class="chat" id="chat">
-          <div class="bubble bot">بەخێربێیت بۆ AI مامۆستا 🤖<br>پرسیارێکی خوێندنی بنووسە.</div>
-        </div>
-        <div class="composer"><input id="question" placeholder="نموونە: یاسای نیوتن بۆم ڕوون بکەرەوە..." autocomplete="off"><button id="send">ناردن ➤</button></div>
-      </div>
-    </section>
-
-    <section class="section" id="tools">
-      <div class="section-heading"><span>SMART TOOLS</span><h2>ئامرازە زیرەکەکان</h2><p>ئامرازەکان بۆ ئەوەی کاتی خوێندنت بە باشترین شێوە بەکاربهێنیت.</p></div>
-      <div class="tool-grid">
-        <button class="tool"><b>📄</b><strong>PDF → کورتکراوە</strong><small>گرنگترین خاڵەکان دەربهێنە.</small></button>
-        <button class="tool"><b>🃏</b><strong>Flashcards</strong><small>کارتەکانی بیرخستنەوە دروست بکە.</small></button>
-        <button class="tool"><b>📝</b><strong>Quiz</strong><small>لە بابەتەکەت تاقیکردنەوە دروست بکە.</small></button>
-        <button class="tool"><b>🫀</b><strong>3D Learning</strong><small>فێربوونی ئەندامەکانی لەش بە شێوەی interactive.</small></button>
-      </div>
-    </section>
-
-    <section class="quote">
-      <div class="quote-mark">“</div>
-      <h2>کاتێک تێدەگەیت، خوێندن دەبێتە توانایی.</h2>
-      <p>pole12krd — بۆ فێربوون، نەک تەنیا بۆ تێپەڕاندنی تاقیکردنەوە.</p>
-    </section>
-  </main>
-
-  <footer><b>pole12krd</b><span>داهاتووی خوێندن بە کوردی</span><span>© 2027</span></footer>
-  <script src="app.js"></script>
+<footer>© 2027 pole12krd — بۆ خوێندکارانی کوردستان</footer>
+<div id="toast" class="toast"></div>
+<script src="app.js"></script>
 </body>
 </html>
