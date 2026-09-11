@@ -1,4 +1,4 @@
-const SUPABASE_URL="PASTE_YOUR_SUPABASE_URL_HERE",SUPABASE_KEY="PASTE_YOUR_SUPABASE_PUBLISHABLE_KEY_HERE";
+const SUPABASE_URL="https://ifflhejqgxiyjzdiyqfk.supabase.co",SUPABASE_KEY="sb_publishable_Eh8H_GpzmxGJLqvfGNQiuw_GFAYieiU";
 const configured=!SUPABASE_URL.includes("PASTE_")&&!SUPABASE_KEY.includes("PASTE_");
 let supabaseClient=null,isSignup=true;
 if(configured&&window.supabase)supabaseClient=window.supabase.createClient(SUPABASE_URL,SUPABASE_KEY);
