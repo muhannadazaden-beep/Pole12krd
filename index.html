@@ -33,22 +33,26 @@
   <p id="settings-message"></p>
 </aside>
 
-<div id="auth-modal" class="modal hidden">
+<div id="auth-modal" class="modal">
   <div class="modal-box">
     <button class="close" id="close-auth">×</button>
     <h2 id="auth-title">چوونەژوورەوە</h2>
     <form id="auth-form">
-      <div id="name-wrap" class="hidden"><label>ناو</label><input id="name" autocomplete="name"></div>
+      <div id="name-wrap"><label>ناوی تەواو</label><input id="name" autocomplete="name" required></div>
       <label>ئیمەیڵ</label><input id="email" type="email" autocomplete="email" required>
-      <label>وشەی نهێنی</label><input id="password" type="password" autocomplete="current-password" minlength="8" required>
+      <label>وشەی نهێنی</label><input id="password" type="password" autocomplete="new-password" minlength="8" required>
+      <div id="confirm-wrap"><label>پشتڕاستکردنەوەی وشەی نهێنی</label><input id="password-confirm" type="password" autocomplete="new-password" minlength="8"></div>
+      <div id="password-rules" class="password-rules"><b>سکیوریتیی وشەی نهێنی:</b><span>٨ پیت یان زیاتر</span><span>وشەی نهێنییەکان یەکسان بن</span><span>وشەی نهێنیی خۆت لەگەڵ کەسێک مەبەخشە</span></div>
       <button id="auth-submit" class="primary" type="submit">چوونەژوورەوە</button>
       <p id="auth-message"></p>
     </form>
-    <button id="toggle-auth" class="text-btn">هەژمارم نییە — خۆتۆمار دەکەم</button>
+    <button id="toggle-auth" class="text-btn">هەژمارم هەیە — چوونەژوورەوە</button>
+    <div class="auth-social"><p>پێش خۆتۆمارکردن، پەیجەکانمان ببینە:</p><a href="https://t.me/knowledge_zanin" target="_blank" rel="noopener">✈️ تێلەگرام</a><a href="https://www.facebook.com/muhannad.azaden" target="_blank" rel="noopener">📘 فەیسبووک</a></div>
   </div>
 </div>
 
 <main>
+<section class="intro-strip"><strong>pole12krd چییە؟</strong><span>پلاتفۆرمێکی فێرکاریی کوردییە بۆ خوێندکارانی پۆلی ١٢ و زانکۆ؛ سەرچاوە، وانە، فایل و ئامرازەکانی خوێندن لە یەک شوێن.</span></section>
 <section id="home" class="hero">
   <div>
     <span class="eyebrow">🎓 فێربوون بە شێوەیەکی نوێ</span>
