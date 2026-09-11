@@ -17,6 +17,8 @@
         .btn { display: inline-block; background: #2563eb; color: #fff; padding: 10px 20px; border-radius: 8px; text-decoration: none; margin-top: 10px; font-weight: bold; border: none; cursor: pointer; width: 100%; text-align: center; }
         .btn:hover { background: #1d4ed8; }
         .ai-response { background: #334155; padding: 15px; border-radius: 6px; margin-top: 10px; min-height: 40px; text-align: right; color: #e2e8f0; }
+        .quiz-opt { background: #334155; padding: 10px; margin: 8px 0; border-radius: 6px; cursor: pointer; border: 1px solid #475569; text-align: right; }
+        .quiz-opt:hover { background: #475569; }
     </style>
 </head>
 <body>
@@ -42,6 +44,16 @@
             <div class="ai-response" id="aiOutput">وەڵامی ژیری دەستکرد لێرە دەردەکەوێت...</div>
         </div>
 
+        <!-- Quiz Section -->
+        <div class="section">
+            <h2 id="quizTitle">📝 تاقیکردنەوەی خێرا (Quiz)</h2>
+            <p id="quizQuestion">کام خەسڵەتە تایبەتە بە وزەی کینەتیکی ($KE$)?</p>
+            <div class="quiz-opt" onclick="checkAnswer(1)" id="opt1">أ) پەیوەندبەستووە بە خێرایی و پاتری</div>
+            <div class="quiz-opt" onclick="checkAnswer(2)" id="opt2">ب) پشت بە بارستایی و خێرایی دەبەستێت ($1/2 mv^2$)</div>
+            <div class="quiz-opt" onclick="checkAnswer(3)" id="opt3">ج) تەنها لە شوێنی بەرزدا بوونی هەیە</div>
+            <div class="ai-response" id="quizResult" style="margin-top:10px;">ئەنجامی وەڵامدانەوەت لێرە دەردەکەوێت...</div>
+        </div>
+
         <!-- Files Section -->
         <div class="section">
             <h2 id="fileTitle">📚 مەنهەج، پرسیار و فایلەکان</h2>
@@ -61,6 +73,12 @@
                 document.getElementById('aiInput').placeholder = "Type your question here...";
                 document.getElementById('aiBtn').innerText = "Ask Tutor";
                 document.getElementById('aiOutput').innerText = "AI response will appear here...";
+                document.getElementById('quizTitle').innerText = "📝 Interactive Quick Quiz";
+                document.getElementById('quizQuestion').innerText = "Which characteristic applies to Kinetic Energy (KE)?";
+                document.getElementById('opt1').innerText = "A) Connected to speed and battery";
+                document.getElementById('opt2').innerText = "B) Depends on mass and velocity (1/2 mv^2)";
+                document.getElementById('opt3').innerText = "C) Exists only at high altitude";
+                document.getElementById('quizResult').innerText = "Your quiz result will appear here...";
                 document.getElementById('fileTitle').innerText = "📚 Curriculums & Files";
                 document.getElementById('fileDesc').innerText = "Download textbooks and educational files for Grade 12 and university";
                 document.getElementById('fileBtn').innerText = "Open Google Drive File Center";
@@ -72,6 +90,12 @@
                 document.getElementById('aiInput').placeholder = "اكتب سؤالك هنا...";
                 document.getElementById('aiBtn').innerText = "اسأل المدرس";
                 document.getElementById('aiOutput').innerText = "سيظهر رد الذكاء الاصطناعي هنا...";
+                document.getElementById('quizTitle').innerText = "📝 اختبار سريع تفاعلي";
+                document.getElementById('quizQuestion').innerText = "ما هي الخصوصية المتعلقة بطاقة الحركة (KE)؟";
+                document.getElementById('opt1').innerText = "أ) مرتبطة بالسرعة والبطارية";
+                document.getElementById('opt2').innerText = "ب) تعتمد على الكتلة والسرعة (1/2 mv^2)";
+                document.getElementById('opt3').innerText = "ج) توجد فقط في الأماكن المرتفعة";
+                document.getElementById('quizResult').innerText = "سيظهر نتيجة الاختبار هنا...";
                 document.getElementById('fileTitle').innerText = "📚 المناهج والملفات";
                 document.getElementById('fileDesc').innerText = "تحميل الكتب والملفات التعليمية للصف الثاني عشر والجامعة";
                 document.getElementById('fileBtn').innerText = "فتح مركز ملفات جوجل درايف";
@@ -83,6 +107,12 @@
                 document.getElementById('aiInput').placeholder = "پرسیارەکەت لێرە بنووسە...";
                 document.getElementById('aiBtn').innerText = "پرسیارکردن لە مامۆستا";
                 document.getElementById('aiOutput').innerText = "وەڵامی ژیری دەستکرد لێرە دەردەکەوێت...";
+                document.getElementById('quizTitle').innerText = "📝 تاقیکردنەوەی خێرا (Quiz)";
+                document.getElementById('quizQuestion').innerText = "کام خەسڵەتە تایبەتە بە وزەی کینەتیکی (KE)؟";
+                document.getElementById('opt1').innerText = "أ) پەیوەندبەستووە بە خێرایی و پاتری";
+                document.getElementById('opt2').innerText = "ب) پشت بە بارستایی و خێرایی دەبەستێت (1/2 mv^2)";
+                document.getElementById('opt3').innerText = "ج) تەنها لە شوێنی بەرزدا بوونی هەیە";
+                document.getElementById('quizResult').innerText = "ئەنجامی وەڵامدانەوەت لێرە دەردەکەوێت...";
                 document.getElementById('fileTitle').innerText = "📚 مەنهەج، پرسیار و فایلەکان";
                 document.getElementById('fileDesc').innerText = "دابەزاندنی پەڕتووک و فایلی فێرکاری بۆ پۆلی 12 و زانکۆ";
                 document.getElementById('fileBtn').innerText = "کردنەوەی فایلسەنتەری گۆگڵ دڕایڤ";
@@ -102,6 +132,19 @@
                 document.getElementById('aiOutput').innerText = "المدرس الذكي: لقد حللت سؤالك ('" + val + "'). بناءً على المعايير الدراسية، إليك الشرح المفصل...";
             } else {
                 document.getElementById('aiOutput').innerText = "مامۆستای زیرەک: پرسیارەکەم خوێندەوە ('" + val + "'). وەک مامۆستایەک بە شێوەیەکی زانستی و پوخت بۆت شی دەکەمەوە کە...";
+            }
+        }
+
+        function checkAnswer(opt) {
+            const lang = document.getElementById('languageSelect').value;
+            if(opt === 2) {
+                if(lang === 'en') document.getElementById('quizResult').innerText = "✅ Correct! Great job, option B is accurate.";
+                else if(lang === 'ar') document.getElementById('quizResult').innerText = "✅ صحيح! أحسنت، الخيار (ب) هو الدقيق.";
+                else document.getElementById('quizResult').innerText = "✅ پیرۆزە! وەڵامەکەت ڕاستە، بژاردەی (ب) دروستە.";
+            } else {
+                if(lang === 'en') document.getElementById('quizResult').innerText = "❌ Incorrect. Try again!";
+                else if(lang === 'ar') document.getElementById('quizResult').innerText = "❌ خطأ. حاول مرة أخرى!";
+                else document.getElementById('quizResult').innerText = "❌ هەڵەیە. دووبارە هەوڵ بدەرەوە!";
             }
         }
     </script>
