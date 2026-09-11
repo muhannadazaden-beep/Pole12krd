@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="ku" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pole12Krd - پۆلی ١٢ و زانکۆ</title>
+    <style>
+        body { font-family: Tahoma, sans-serif; background: #0f172a; color: #fff; margin: 0; padding: 20px; text-align: center; }
+        .container { max-width: 800px; margin: auto; background: #1e293b; padding: 30px; border-radius: 15px; box-shadow: 0 4px 15px rgba(0,0,0,0.3); }
+        h1 { color: #38bdf8; }
+        p { color: #94a3b8; }
+        .lang-select { margin: 20px 0; }
+        select { padding: 10px; border-radius: 8px; background: #334155; color: #fff; border: none; font-size: 16px; }
+        .btn { display: inline-block; background: #2563eb; color: #fff; padding: 12px 25px; border-radius: 8px; text-decoration: none; margin-top: 20px; font-weight: bold; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="lang-select">
+            <select id="languageSelect" onchange="changeLanguage()">
+                <option value="ku">کوردی (سۆرانی)</option>
+                <option value="kmr">کوردی (بادینی)</option>
+                <option value="ar">العربية</option>
+                <option value="en">English</option>
+            </select>
+        </div>
+        <h1 id="title">پۆلی ١٢ و زانکۆ - Pole12Krd</h1>
+        <p id="desc">ناوەندی پێشکەوتووی قوتابیان لە کوردستان بە پشتگیری ژیری دەستکرد بۆ 2027</p>
+        <div class="btn" id="welcomeBtn">بە زوویی دەست بە کار دەبین!</div>
+    </div>
+    <script>
+        function changeLanguage() {
+            const lang = document.getElementById('languageSelect').value;
+            if(lang === 'en') {
+                document.getElementById('title').innerText = "Grade 12 & University - Pole12Krd";
+                document.getElementById('desc').innerText = "Advanced student platform in Kurdistan powered by AI for 2027";
+                document.getElementById('welcomeBtn').innerText = "Launching Soon!";
+            } else if(lang === 'ar') {
+                document.getElementById('title').innerText = "الصف الثاني عشر والجامعة - Pole12Krd";
+                document.getElementById('desc').innerText = "منصة طلابية متقدمة في كردستان مدعومة بالذكاء الاصطناعي لعام 2027";
+                document.getElementById('welcomeBtn').innerText = "قريباً جداً!";
+            } else {
+                document.getElementById('title').innerText = "پۆلی ١٢ و زانکۆ - Pole12Krd";
+                document.getElementById('desc').innerText = "ناوەندی پێشکەوتووی قوتابیان لە کوردستان بە پشتگیری ژیری دەستکرد بۆ 2027";
+                document.getElementById('welcomeBtn').innerText = "بە زوویی دەست بە کار دەبین!";
+            }
+        }
+    </script>
+</body>
+</html>
