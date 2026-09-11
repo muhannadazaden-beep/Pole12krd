@@ -1,68 +1,86 @@
 <!doctype html>
-<html lang="ku">
+<html lang="ckb" dir="rtl">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>pole12krd</title>
-  <link rel="stylesheet" href="style.css">
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>pole12krd — پۆلی ١٢ و زانکۆ</title>
+<link rel="stylesheet" href="style.css">
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
 <body>
-  <main class="container">
-    <header>
-      <h1>pole12krd</h1>
-      <p>پلاتفۆرمی خوێندن بۆ خوێندکاران</p>
-    </header>
+<header class="topbar">
+  <a class="brand" href="#home"><span>pole12</span><b>krd</b></a>
+  <nav>
+    <a href="#home">سەرەتا</a><a href="#subjects">وانەکان</a><a href="#tools">ئامرازەکان</a><a href="#about">دەربارە</a>
+  </nav>
+  <div class="top-actions">
+    <button id="settings-toggle" class="icon-btn" title="ستینگەکان">⚙️</button>
+    <button id="account-btn" class="account-btn">چوونەژوورەوە</button>
+  </div>
+</header>
 
-    <section class="settings-wrap">
-      <button id="settings-toggle" class="settings-button" type="button">⚙️ ستینگەکان</button>
-      <div id="settings-panel" class="settings-panel hidden">
-        <h3>ستینگەکان</h3>
-        <div class="setting-row"><div><strong>ڕووناکی</strong><small>دۆخی وێبسایت</small></div>
-          <div class="segmented"><button type="button" data-theme="light">☀️ ڕوون</button><button type="button" data-theme="dark">🌙 تاریک</button></div></div>
-        <div class="setting-row"><div><strong>زمان</strong><small>زمانی ناو وێبسایت</small></div>
-          <select id="language-select"><option value="ckb">کوردی سۆرانی</option><option value="kmr">کوردی بادینی</option><option value="ar">عەرەبی</option><option value="en">English</option></select></div>
-        <div class="setting-links">
-          <button type="button" data-action="security">🛡️ پاراستن و سکیوریتی</button>
-          <button type="button" data-action="profile">👤 پرۆفایلی من</button>
-          <button type="button" data-action="edit-profile">✏️ دەستکاری پرۆفایل</button>
-          <button type="button" data-action="logout">🚪 چوونەدەرەوە</button>
-        </div>
-        <p id="settings-message" class="message"></p>
-      </div>
-    </section>
-    <section id="auth-card" class="card">
-      <h2 id="auth-title">خۆتۆمارکردن</h2>
-      <form id="auth-form">
-        <label>ناو</label>
-        <input id="name" type="text" autocomplete="name" placeholder="ناوت" required>
+<aside id="settings-panel" class="settings hidden">
+  <h3>⚙️ ستینگەکان</h3>
+  <div class="setting"><span>دۆخ</span><div><button data-theme="light">☀️ ڕوون</button><button data-theme="dark">🌙 تاریک</button></div></div>
+  <label class="setting-label">زمان</label>
+  <select id="language-select">
+    <option value="ckb">کوردی سۆرانی</option><option value="kmr">کوردی بادینی</option><option value="ar">عەرەبی</option><option value="en">English</option>
+  </select>
+  <hr>
+  <button class="setting-link" data-action="profile">👤 پرۆفایلی من</button>
+  <button class="setting-link" data-action="edit">✏️ دەستکاری پرۆفایل</button>
+  <button class="setting-link" data-action="security">🛡️ پاراستن و سکیوریتی</button>
+  <button class="setting-link" data-action="logout">🚪 چوونەدەرەوە</button>
+  <p id="settings-message"></p>
+</aside>
 
-        <label>ئیمەیڵ</label>
-        <input id="email" type="email" autocomplete="email" placeholder="example@email.com" required>
+<div id="auth-modal" class="modal hidden">
+  <div class="modal-box">
+    <button class="close" id="close-auth">×</button>
+    <h2 id="auth-title">چوونەژوورەوە</h2>
+    <form id="auth-form">
+      <div id="name-wrap" class="hidden"><label>ناو</label><input id="name" autocomplete="name"></div>
+      <label>ئیمەیڵ</label><input id="email" type="email" autocomplete="email" required>
+      <label>وشەی نهێنی</label><input id="password" type="password" autocomplete="current-password" minlength="8" required>
+      <button id="auth-submit" class="primary" type="submit">چوونەژوورەوە</button>
+      <p id="auth-message"></p>
+    </form>
+    <button id="toggle-auth" class="text-btn">هەژمارم نییە — خۆتۆمار دەکەم</button>
+  </div>
+</div>
 
-        <label>وشەی نهێنی</label>
-        <input id="password" type="password" autocomplete="new-password" placeholder="وشەی نهێنی" minlength="8" required>
+<main>
+<section id="home" class="hero">
+  <div>
+    <span class="eyebrow">🎓 فێربوون بە شێوەیەکی نوێ</span>
+    <h1>لە <span>pole12krd</span> ـەوە<br>بۆ داهاتووت.</h1>
+    <p>سەرچاوە و ئامرازە فێرکارییەکان بۆ خوێندکارانی پۆلی ١٢ و زانکۆ، بە زمانی کوردی و شێوەیەکی سادە.</p>
+    <div class="hero-actions"><a href="#subjects" class="primary">دەستپێکردنی خوێندن 📚</a><button id="hero-login" class="secondary">هەژمار دروست بکە</button></div>
+  </div>
+  <div class="hero-card"><div class="orb">12</div><h3>هەموو شتێک بۆ خوێندن</h3><p>وانە، فایل، ڕاهێنان و ئامرازە زیرەکەکان لە یەک شوێن.</p></div>
+</section>
 
-        <button id="auth-submit" type="submit">خۆتۆمارکردن</button>
-        <p id="auth-message" class="message"></p>
-      </form>
+<section id="subjects" class="section"><div class="section-head"><div><span class="eyebrow">بەشەکان</span><h2>چی دەتەوێت بخوێنیت؟</h2></div></div>
+<div class="grid">
+  <article class="feature"><span>📐</span><h3>زانستی</h3><p>بابەت و ڕاهێنان بۆ بەشی زانستی.</p><button>بەم زووانە</button></article>
+  <article class="feature"><span>📖</span><h3>وێژەیی</h3><p>سەرچاوە و یارمەتی بۆ بەشی وێژەیی.</p><button>بەم زووانە</button></article>
+  <article class="feature"><span>🎓</span><h3>زانکۆ</h3><p>ئامراز و سەرچاوە بۆ خوێندکارانی زانکۆ.</p><button>بەم زووانە</button></article>
+  <article class="feature"><span>📄</span><h3>PDF و فایل</h3><p>کتێب و فایلە فێرکارییەکان لە یەک شوێن.</p><button>بەم زووانە</button></article>
+</div></section>
 
-      <button id="toggle-auth" class="secondary" type="button">هەژمارم هەیە — چوونەژوورەوە</button>
+<section id="tools" class="section alt"><div class="section-head"><div><span class="eyebrow">ئامرازەکان</span><h2>یارمەتیدەری خوێندن</h2></div></div>
+<div class="tool-list">
+  <div><b>📝</b><span><strong>تێبینی و ڕێکخستن</strong><small>کار و خوێندنت بە ڕێکخراوی بەڕێوەببە.</small></span></div>
+  <div><b>🧠</b><span><strong>ڕاهێنان و تاقیکردنەوە</strong><small>خۆت تاقی بکەرەوە و پێشکەوتنت ببینە.</small></span></div>
+  <div><b>🤖</b><span><strong>AI Teacher</strong><small>بەشی AI لە قۆناغی دواتردا زیاد دەکرێت.</small></span></div>
+</div></section>
 
-      <div class="social">
-        <p>پێش خۆتۆمارکردن دەتوانیت سەردانی پەیجەکانمان بکەیت:</p>
-        <a href="https://www.facebook.com/muhannad.azaden?mibextid=wwXIfr" target="_blank" rel="noopener noreferrer">📘 فەیسبووک</a>
-        <a href="https://t.me/knowledge_zanin" target="_blank" rel="noopener noreferrer">✈️ تێلەگرام</a>
-      </div>
-    </section>
+<section id="about" class="section about"><h2>pole12krd بۆ چییە؟</h2><p>ئامانجمان دروستکردنی شوێنێکی سادە و بەسوودە بۆ خوێندکارانە؛ بە تایبەتی بۆ ئەوانەی دەیانەوێت بە سەرچاوەی باش و بە زمانی خۆیان فێرببن.</p></section>
+</main>
 
-    <section id="app-card" class="card hidden">
-      <h2>بەخێربێیت 👋</h2>
-      <p id="welcome"></p>
-      <button id="logout" type="button">چوونەدەرەوە</button>
-    </section>
-  </main>
-
-  <script src="app.js"></script>
-</body>
-</html>
+<footer>
+  <div><strong>pole12krd</strong><p>خوێندن بۆ هەمووان.</p></div>
+  <div class="social"><a href="https://t.me/knowledge_zanin" target="_blank" rel="noopener">✈️ تێلەگرام</a><a href="https://www.facebook.com/muhannad.azaden" target="_blank" rel="noopener">📘 فەیسبووک</a></div>
+  <small>© 2026 pole12krd</small>
+</footer>
+<script src="app.js"></script>
+</body></html>
